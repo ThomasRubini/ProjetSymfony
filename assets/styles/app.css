@@ -16,6 +16,11 @@ a {
     }
 }
 
+/*Main content (between header and footer)*/
+body > main {
+    min-height: calc(100vh - ((3.2rem + 2*0.75rem) + 6rem) + 1px);
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -26,6 +31,7 @@ header {
     
     background-color: var(--background);
     color: var(--accent);
+    height: 2rem;
 }
 
 header > form {
@@ -33,7 +39,7 @@ header > form {
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    padding: 4px 8px;
+    padding: 2px 8px;
     border: solid 2px var(--accent);
     border-radius: var(--radius);
     
@@ -52,5 +58,18 @@ header > form {
     }
     & input[type=submit]{
         display: none;
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 6rem;
+    justify-content: center;
+    align-items: center;
+    background: hsl(200, 5%, 85%);
+    &>p{
+        font-size: large;
     }
 }
