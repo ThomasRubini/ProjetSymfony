@@ -18,7 +18,12 @@ a {
 
 /*Main content (between header and footer)*/
 body > main {
-    min-height: calc(100vh - ((3.2rem + 2*0.75rem) + 6rem) + 1px);
+    min-height: calc(100vh - ((2rem + 2*0.75rem) + 6rem));
+}
+
+/*fix symfony template style*/
+.example-wrapper {
+    margin: 0 1em !important;
 }
 
 header {
