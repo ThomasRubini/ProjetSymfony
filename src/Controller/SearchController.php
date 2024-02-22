@@ -83,7 +83,28 @@ class SearchController extends AbstractController
 
         $results = $response["results"];
         SearchController::addFruitToAlbums($results, $fruit, $entityManager);
+        $user = $this->getUser();
+        $array_id = array();
+        foreach($user->getLiked() as $like){
+            array_push(
+                $array_id,
+                $like->getAlbumId()
+            );
+        }
+        $true_results = array();
+        foreach($results as $result){
 
+            $isLiked = in_array($result["id"],$array_id);
+            
+            $result = array_merge(
+                            $result,
+                            ["isLiked" => $isLiked? "true": "false"]
+            );
+            array_push($true_results,$result);
+        }
+        
+        $results = $true_results;
+        
         return $this->render('search/search.html.twig', [
             'controller_name' => 'SearchController',
             'query' => $user_query,
