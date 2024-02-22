@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -41,16 +41,19 @@
                     <img src="{{ asset('/styles/search.svg') }}" alt="Search" />
                 </label>
             </form>
+            {% if app.user %}
+            <div>
+                <a class="no-style" href="{{url('app_favorite')}}">Favorites</a>
+                <a class="no-style" href="{{url('app_logout')}}">Logout</a>
+            </div>
+            {% else %}
             <div>
                 <a class="no-style" href="{{url('app_register')}}">Register</a>
                 <a class="no-style" href="{{url('app_login')}}">Login</a>
             </div>
+            {% endif%}
         </header>
-        {% endblock %}
-
-        {% block body %}{% endblock %}
-
-        {% block footer %}
+        {% endblock %} {% block body %}{% endblock %} {% block footer %}
         <footer>
             <p>Done by: Capelier 🏳️‍⚧️ — Rubini 💅 — Simaila 🤓 — V????? 🛠️</p>
         </footer>
