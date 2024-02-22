@@ -10,7 +10,6 @@
         fetch("/favorite/remove/" + id).then((data) => {
             if (data.status == 200) {
                 document.querySelector("#id" + id).classList.remove("fav");
-                alert("Removed from favs");
             }
         });
     }
@@ -21,8 +20,10 @@
         {% set main_artist = album_liked["artists_sort"] %}
         {% set artists = album_liked["artists"] %}
         {% set album = album_liked["title"] %}
-        <section class="album fav">
+        {% set fruit = album_liked["fruit"] %}
+        <section class="album fav" id="id{{album_liked['id']}}">
             <span>
+                <h1>{{fruit}}</h1>
                 <h2>{{album}}</h2>
                 by
                 {% for artist in artists %}

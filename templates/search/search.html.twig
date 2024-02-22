@@ -7,7 +7,6 @@ endblock %} {% block body %}
         fetch("/favorite/add/" + id).then((data) => {
             if (data.status == 200) {
                 document.querySelector("#id" + id).classList.add("fav");
-                alert("Added to favs");
             }
         });
     }
@@ -31,16 +30,13 @@ endblock %} {% block body %}
                 src="{{result['cover_image']}}"
                 alt="{{album ~ ' by ' ~ artist}}"
             />
-            {% if result['isLiked'] == 'true' %}
-            <p>
+            <p class="alreadyFav">
                 <b>Already fav</b>, go to
                 <a href="{{url('app_favorite')}}">favorites</a>
             </p>
-            {% else %}
-            <button onclick="addToFavs({{result['id']}})">
+            <button class="toFav" onclick="addToFavs({{result['id']}})">
                 Add to favorites
             </button>
-            {% endif %}
         </section>
         {% endfor %}
     </div>
