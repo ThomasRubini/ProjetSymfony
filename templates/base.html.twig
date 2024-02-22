@@ -16,7 +16,7 @@
     <body>
         {% block header %}
         <header>
-            <a href="{{url('index')}}">Frutti</a>
+            <a class="no-style" href="{{url('index')}}">Frutti</a>
             <form action="{{url('app_search')}}" method="get">
                 <input type="text" name="q" id="q" placeholder="Search" />
                 <select name="fruit" id="fruit">
@@ -41,7 +41,10 @@
                     <img src="{{ asset('/styles/search.svg') }}" alt="Search" />
                 </label>
             </form>
-            <a href="{{url('app_login')}}" class="button-link">Connect</a>
+            <div>
+            <a class="no-style" href="{{url('app_register')}}">Register</a>
+            <a class="no-style" href="{{url('app_login')}}">Login</a>
+            </div>
         </header>
         {% endblock %}
 
