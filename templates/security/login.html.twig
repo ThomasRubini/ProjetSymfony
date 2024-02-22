@@ -1,44 +1,5 @@
 {% extends 'base.html.twig' %} {% block title %}Log in!{% endblock %} {% block
 body %}
-<style>
-    main#login > form {
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-max);
-        justify-content: center;
-        align-items: center;
-        min-width: 300px;
-        max-width: 10rem;
-        justify-content: center;
-        align-items: center;
-        & > label {
-            display: none;
-        }
-        & > :is(input[type="text"], input[type="password"]) {
-            height: var(--size-max);
-            border-radius: var(--radius);
-            padding: calc(var(--size-max) / 2) var(--size-max);
-            border: none;
-            background: var(--grey);
-            width: 80%;
-        }
-        & > input[type="submit"] {
-            cursor: pointer;
-            background: var(--light);
-            border: none;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            color: var(--dark);
-            padding: calc(var(--size-max) - 8px) 0;
-            width: 70%;
-            height: 20%;
-            transition: all ease-out 0.2s;
-            &:hover {
-                box-shadow: var(--shadow-hover);
-            }
-        }
-    }
-</style>
 <main id="login">
     <form method="post">
         {% if error %}

@@ -1,44 +1,5 @@
 {% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block
 body %}
-<style>
-    main#register > form {
-        display: flex;
-        flex-direction: column;
-        gap: var(--size-max);
-        justify-content: center;
-        align-items: center;
-        min-width: 300px;
-        max-width: 10rem;
-        justify-content: center;
-        align-items: center;
-        & > label:not(label[for="registration_form_agreeTerms"]) {
-            display: none;
-        }
-        & > :is(input[type="text"], input[type="password"]) {
-            height: var(--size-max);
-            border-radius: var(--radius);
-            padding: calc(var(--size-max) / 2) var(--size-max);
-            border: none;
-            background: var(--grey);
-            width: 80%;
-        }
-        & > input[type="submit"] {
-            cursor: pointer;
-            background: var(--light);
-            border: none;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            color: var(--dark);
-            padding: calc(var(--size-max) - 8px) 0;
-            width: 70%;
-            height: 20%;
-            transition: all ease-out 0.2s;
-            &:hover {
-                box-shadow: var(--shadow-hover);
-            }
-        }
-    }
-</style>
 <main id="register">
     {{ form_start(registrationForm) }} {% if app.user %}
     <div class="mb-3">
@@ -77,8 +38,8 @@ body %}
 
     <input type="submit" value="Register" />
     <p>
-        If you don't have an account:
-        <a href="{{url('app_register')}}">register</a>.
+        If you already have an account:
+        <a href="{{url('app_login')}}">login</a>.
     </p>
 
     {{ form_end(registrationForm) }}
