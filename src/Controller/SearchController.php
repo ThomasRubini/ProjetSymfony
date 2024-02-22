@@ -13,22 +13,26 @@ use GuzzleHttp\Client;
 class SearchController extends AbstractController
 {
 
-    private static function addFruitToAlbums(array $releases,string $fruit,EntityManagerInterface $entityManager):void{
-        foreach($releases as $release){
+    private static function addFruitToAlbums(array $releases, string $fruit, EntityManagerInterface $entityManager): void
+    {
+        foreach ($releases as $release) {
             $id = $release["id"];
             $album = $entityManager->getRepository(Album::class)->findBy(
                 ['album_id' => $id]
             );
-            if (!$album) {
+
+            if (count($album) == 0) {
                 $album = new Album();
                 $album->setAlbumId($id);
                 //https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database
                 $entityManager->persist($album);
                 $entityManager->flush();
+            } else {
+                $album = $album[0];
             }
             $album_fruit = $album->getFruits();
-            if (!str_contains($album_fruit, $fruit)){
-                $album->setFruits($album_fruit.$fruit);
+            if (!str_contains($album_fruit, $fruit)) {
+                $album->setFruits($album_fruit . $fruit);
                 //https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database
                 $entityManager->persist($album);
                 $entityManager->flush();
@@ -36,8 +40,9 @@ class SearchController extends AbstractController
         }
     }
 
-    private static function getEmojiName(string $emoji) : string {
-        switch ($emoji){
+    private static function getEmojiName(string $emoji): string
+    {
+        switch ($emoji) {
             case "🍎":
                 return "apple";
             case "🍐":
@@ -119,7 +124,7 @@ class SearchController extends AbstractController
             "per_page" => "15",
         ]);
 
-        SearchController::addFruitToAlbums($result["results"],$fruit,$entityManager);
+        SearchController::addFruitToAlbums($result["results"], $fruit, $entityManager);
 
         return $this->render('search/search.html.twig', [
             'controller_name' => 'SearchController',

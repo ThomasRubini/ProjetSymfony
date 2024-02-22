@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>results for {{ query }} with {{fruit_emoji}} ✅</h1>
+    <h1>Results for "{{ query }}" with {{fruit_emoji}}:</h1>
     {% for result in results %}
         {% set array = result['title']|split('-') %}
         {% set artist = array[0] %}
