@@ -3,15 +3,17 @@
 {% block title %}Favorites!{% endblock %}
 
 {% block body %}
-    {% for album_liked in favorites %} 
-        {% set main_artist = album_liked["artists_sort"] %} 
-        {% set artists = album_liked["artists"] %} 
+<main id="favorites">
+    <div class="results">
+    {% for album_liked in favorites %}
+        {% set main_artist = album_liked["artists_sort"] %}
+        {% set artists = album_liked["artists"] %}
         {% set album = album_liked["title"] %}
         <section class="album">
             <span>
                 <h2>{{album}}</h2>
                 by
-                {% for artist in artists %}     
+                {% for artist in artists %}
                     <h3>{{artist["name"]}}</h3>
                 {% endfor %}
             </span>
@@ -27,4 +29,6 @@
             <br />
         </section>
     {% endfor %}
+    </div>
+</main>
 {% endblock %}

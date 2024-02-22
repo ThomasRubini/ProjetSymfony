@@ -135,7 +135,7 @@ main:is(#login, #register) > form {
     }
 }
 
-main#searchResults {
+main:is(#searchResults, #favorites) {
     & > h1 {
         padding: 2rem;
         text-align: center;
