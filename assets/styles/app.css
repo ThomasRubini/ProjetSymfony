@@ -147,6 +147,12 @@ main:is(#searchResults, #favorites) {
         justify-items: stretch;
         gap: 2rem;
     }
+    & > nav {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        padding: 1rem;
+    }
 }
 
 section.album {
