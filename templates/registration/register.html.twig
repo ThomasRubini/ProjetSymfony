@@ -1,19 +1,86 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block
+body %}
+<style>
+    main#register > form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-max);
+        justify-content: center;
+        align-items: center;
+        min-width: 300px;
+        max-width: 10rem;
+        justify-content: center;
+        align-items: center;
+        & > label:not(label[for="registration_form_agreeTerms"]) {
+            display: none;
+        }
+        & > :is(input[type="text"], input[type="password"]) {
+            height: var(--size-max);
+            border-radius: var(--radius);
+            padding: calc(var(--size-max) / 2) var(--size-max);
+            border: none;
+            background: var(--grey);
+            width: 80%;
+        }
+        & > input[type="submit"] {
+            cursor: pointer;
+            background: var(--light);
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            color: var(--dark);
+            padding: calc(var(--size-max) - 8px) 0;
+            width: 70%;
+            height: 20%;
+            transition: all ease-out 0.2s;
+            &:hover {
+                box-shadow: var(--shadow-hover);
+            }
+        }
+    }
+</style>
+<main id="register">
+    {{ form_start(registrationForm) }} {% if app.user %}
+    <div class="mb-3">
+        You are logged in as {{ app.user.userIdentifier }},
+        <a href="{{ path('app_logout') }}">Logout</a>
+    </div>
+    {% endif %}
 
-{% block title %}Register{% endblock %}
+    <h2>Register</h2>
+    {{ form_errors(registrationForm.username) }}
+    <label for="username">Username</label>
+    <input
+        type="text"
+        name="{{field_name(registrationForm.username)}}"
+        value="{{field_value(registrationForm.username)}}"
+        id="username"
+        class="form-control"
+        autocomplete="username"
+        placeholder="Username"
+        max-length="180"
+        required
+        autofocus
+    />
+    {{ form_errors(registrationForm.plainPassword) }}
+    <label for="password">Password</label>
+    <input
+        type="password"
+        name="{{field_name(registrationForm.plainPassword)}}"
+        class="form-control"
+        autocomplete="new-password"
+        placeholder="Password"
+        required
+    />
 
-{% block body %}
-    <h1>Register</h1>
+    {{ form_row(registrationForm.agreeTerms) }}
 
-    {{ form_errors(registrationForm) }}
+    <input type="submit" value="Register" />
+    <p>
+        If you don't have an account:
+        <a href="{{url('app_register')}}">register</a>.
+    </p>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+</main>
 {% endblock %}
