@@ -9,21 +9,19 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>results for {{ query }}! ✅</h1>
+    <h1>results for {{ query }} with {{fruit_emoji}} ✅</h1>
     {% for result in results %}
         {% set array = result['title']|split('-') %}
+        {% set artist = array[0] %}
+        {% set song = array[1] %}
         <div>
-            <div>
-                artist : {{array[0]}}
-            </div>
-            <div>
-                song : {{array[1]}}
-            </div>
-            <img src={{result['cover_image']}}></img>
+            <p>artist : {{artist}}</p>
+            <p>song : {{song}}</p>
+            <img loading="lazy" src={{result['cover_image']}} alt="{{song ~ ' by ' ~ artist}}" />
         </div>
     {% endfor %}
-    <a href="/search?q={{query}}&page={{previous_page}}">previous page</a>
+    <a href="/search?q={{query}}&page={{previous_page}}&fruit={{fruit_emoji}}">previous page</a>
     <p>{{page}}</p>
-    <a href="/search?q={{query}}&page={{next_page}}">next page</a>
+    <a href="/search?q={{query}}&page={{next_page}}&fruit={{fruit_emoji}}">next page</a>
 </div>
 {% endblock %}
