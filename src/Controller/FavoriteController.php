@@ -15,7 +15,7 @@ class FavoriteController extends AbstractController
 {
 
     #[Route('/remove/{album_id}', name: 'app_remove_favorite')]
-    public function removeFromFavorites(int $album_id): Response
+    public function removeFromFavorites(int $album_id,EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         $album = $entityManager->getRepository(Album::class)->findBy(
