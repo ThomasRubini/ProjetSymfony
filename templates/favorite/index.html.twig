@@ -3,6 +3,18 @@
 {% block title %}Favorites!{% endblock %}
 
 {% block body %}
+<script>
+    function rmFromFavs(id) {
+        // alert(id);
+        // /favorite/add/{id}
+        fetch("/favorite/remove/" + id).then((data) => {
+            if (data.status == 200) {
+                document.querySelector("#id" + id).classList.remove("fav");
+                alert("Removed from favs");
+            }
+        });
+    }
+</script>
 <main id="favorites">
     <div class="results">
     {% for album_liked in favorites %}
@@ -26,7 +38,9 @@
             {% for track in album_liked["tracklist"] %}
                 <p>{{track["title"]}} - {{track["duration"]}}</p>
             {% endfor %}
-            <br />
+            <button onclick="rmFromFavs({{album_liked['id']}})">
+                Remove from favorites
+            </button>
         </section>
     {% endfor %}
     </div>
