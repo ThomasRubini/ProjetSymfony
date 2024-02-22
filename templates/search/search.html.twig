@@ -15,12 +15,8 @@
         {% set artist = array[0] %}
         {% set song = array[1] %}
         <div>
-            <div>
-                artist : {{artist}}
-            </div>
-            <div>
-                song : {{song}}
-            </div>
+            <p>artist : {{artist}}</p>
+            <p>song : {{song}}</p>
             <img loading="lazy" src={{result['cover_image']}} alt="{{song ~ ' by ' ~ artist}}" />
         </div>
     {% endfor %}
