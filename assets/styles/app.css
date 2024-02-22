@@ -66,6 +66,12 @@ header > form {
         background: none;
         color: var(--light);
     }
+    & > select {
+        background: none;
+        border: none;
+        outline: none;
+        appearance: none;
+    }
     & label > img {
         width: 20px;
         height: 20px;
