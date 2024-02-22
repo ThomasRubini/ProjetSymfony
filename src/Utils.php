@@ -16,8 +16,8 @@ class Utils
 
         // Set the base URI for the request and any default request options
         $auth = array(
-            "key" => "kLzxeHuJCXRyQuBURaEN",
-            "secret" => "biDCkuoMbGLeDtQGqCPCtbVqmzPaVmQG"
+            "key" => $_ENV["DISCOGS_KEY"],
+            "secret" => $_ENV["DISCOGS_SECRET"]
         );
 
         // Create the query parameters array
