@@ -62,6 +62,7 @@ class SearchController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $page = $request->query->get('page');
+        if ($page== null) $page = 1;
         $fruit = $request->query->get('fruit');
         $user_query = $request->query->get('q');
 
@@ -111,6 +112,7 @@ class SearchController extends AbstractController
             'fruit_emoji' => $fruit_emoji,
             'fruit_name' => SearchController::getEmojiName($fruit),
             'page' => $page,
+            'all_page' => $response["pagination"]["pages"],
             "next_page" => $page < $response["pagination"]["pages"] ? strval($page + 1) : $page_str,
             "previous_page" => $page > 1 ? strval($page - 1) : $page_str,
             'results' => $results
