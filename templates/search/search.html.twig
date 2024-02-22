@@ -17,7 +17,10 @@ endblock %} {% block body %}
     <div class="results">
         {% for result in results %} {% set array = result['title']|split('-') %}
         {% set artist = array[0] %} {% set album = array[1] %}
-        <section class="album" id="id{{result['id']}}">
+        <section
+            class="album {% if result['isLiked'] == 'true' %}fav{% endif %}"
+            id="id{{result['id']}}"
+        >
             <span>
                 <h2>{{album}}</h2>
                 by
@@ -28,9 +31,16 @@ endblock %} {% block body %}
                 src="{{result['cover_image']}}"
                 alt="{{album ~ ' by ' ~ artist}}"
             />
+            {% if result['isLiked'] == 'true' %}
+            <p>
+                <b>Already fav</b>, go to
+                <a href="{{url('app_favorite')}}">favorites</a>
+            </p>
+            {% else %}
             <button onclick="addToFavs({{result['id']}})">
                 Add to favorites
             </button>
+            {% endif %}
         </section>
         {% endfor %}
     </div>

@@ -1,20 +1,30 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Welcome to Frutti!{% endblock %}
-
+{% extends 'base.html.twig' %} {% block title %}Welcome to Frutti!{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
+<main>
     <h1>Welcome to Frutti!</h1>
     <p>Frutti is an application to create your own fruit record collection.</p>
+    <br />
     <h2>But what is a fruit record collection? 🤔</h2>
-    <p>A fruit collection is composed of albums which have a link with fruits.</p>
-    <p>Frutti uses <a href="https://www.discogs.com/" title="Visit Discogs website">Discogs</a> to let you find albums of fruits.</p>
+    <p>
+        A fruit collection is composed of albums which have a link with fruits.
+    </p>
+    <p>
+        Frutti uses
+        <a href="https://www.discogs.com/" title="Visit Discogs website"
+            >Discogs</a
+        >
+        to let you find albums of fruits.
+    </p>
+    <br />
     <h2>Start your fruit collection today!</h2>
-    <p><a href="/register" title="Click to here to create an account">Create an account</a> or to <a href="/login" title="Click here to connect to an existing account">connect to an existing one</a>.</p>
-</div>
+    <p>
+        <a href="/register" title="Click to here to create an account"
+            >Create an account</a
+        >
+        or to
+        <a href="/login" title="Click here to connect to an existing account"
+            >connect to an existing one</a
+        >.
+    </p>
+</main>
 {% endblock %}
