@@ -16,6 +16,9 @@ class Album
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $fruits = null;
 
+    #[ORM\Column]
+    private ?int $album_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,6 +39,18 @@ class Album
     public function setFruits(?string $fruits): static
     {
         $this->fruits = $fruits;
+
+        return $this;
+    }
+
+    public function getAlbumId(): ?int
+    {
+        return $this->album_id;
+    }
+
+    public function setAlbumId(int $album_id): static
+    {
+        $this->album_id = $album_id;
 
         return $this;
     }

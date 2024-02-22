@@ -2,14 +2,39 @@
 
 namespace App\Controller;
 
+use App\Entity\Album;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
 
 class SearchController extends AbstractController
 {
+
+    private static function addFruitToAlbums(array $releases,string $fruit,EntityManagerInterface $entityManager):void{
+        foreach($releases as $release){
+            $id = $release["id"];
+            $album = $entityManager->getRepository(Album::class)->findBy(
+                ['album_id' => $id]
+            );
+            if (!$album) {
+                $album = new Album();
+                $album->setAlbumId($id);
+                //https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database
+                $entityManager->persist($album);
+                $entityManager->flush();
+            }
+            $album_fruit = $album->getFruits();
+            if (!str_contains($album_fruit, $fruit)){
+                $album->setFruits($album_fruit.$fruit);
+                //https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database
+                $entityManager->persist($album);
+                $entityManager->flush();
+            }
+        }
+    }
 
     private static function getEmojiName(string $emoji) : string {
         switch ($emoji){
@@ -82,7 +107,7 @@ class SearchController extends AbstractController
     }
 
     #[Route('/search', name: 'app_search')]
-    public function index(Request $request): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $page = $request->query->get('page');
         $fruit = $request->query->get('fruit');
@@ -93,6 +118,8 @@ class SearchController extends AbstractController
             "page" => strval($page),
             "per_page" => "15",
         ]);
+
+        SearchController::addFruitToAlbums($result["results"],$fruit,$entityManager);
 
         return $this->render('search/search.html.twig', [
             'controller_name' => 'SearchController',
