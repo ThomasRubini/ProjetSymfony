@@ -19,6 +19,23 @@
             <a href="{{url('index')}}">Frutti</a>
             <form action="{{url('app_search')}}" method="get">
                 <input type="text" name="q" id="q" placeholder="Search" />
+                <select name="fruit" id="fruit">
+                    <option value="🍎">🍎</option>
+                    <option value="🍐">🍐</option>
+                    <option value="🍊">🍊</option>
+                    <option value="🍋">🍋</option>
+                    <option value="🍌">🍌</option>
+                    <option value="🍉">🍉</option>
+                    <option value="🍇">🍇</option>
+                    <option value="🍓">🍓</option>
+                    <option value="🫐">🫐</option>
+                    <option value="🍈">🍈</option>
+                    <option value="🍒">🍒</option>
+                    <option value="🍑">🍑</option>
+                    <option value="🍍">🍍</option>
+                    <option value="🥝">🥝</option>
+                    <option value="🥥">🥥</option>
+                </select>
                 <label>
                     <input type="submit" value="search" />
                     <img src="{{ asset('/styles/search.svg') }}" alt="Search" />
