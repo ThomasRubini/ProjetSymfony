@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Welcome to Frutti!{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper { margin: 1em auto; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Volumes/Little-Disk/kap/Documents/IUT/3/S6.A.05 - Dev avancé/ProjetSymfony/src/Controller/IndexController.php</code></li>
-        <li>Your template at <code>/Volumes/Little-Disk/kap/Documents/IUT/3/S6.A.05 - Dev avancé/ProjetSymfony/templates/index/index.html.twig</code></li>
-    </ul>
+    <h1>Welcome to Frutti!</h1>
+    <p>Frutti is an application to create your own fruit record collection.</p>
+    <h2>But what is a fruit record collection? 🤔</h2>
+    <p>A fruit collection is composed of albums which have a link with fruits.</p>
+    <p>Frutti uses <a href="https://www.discogs.com/" title="Visit Discogs website">Discogs</a> to let you find albums of fruits.</p>
+    <h2>Start your fruit collection today!</h2>
+    <p><a href="/register" title="Click to here to create an account">Create an account</a> or to <a href="/login" title="Click here to connect to an existing account">connect to an existing one</a>.</p>
 </div>
 {% endblock %}
