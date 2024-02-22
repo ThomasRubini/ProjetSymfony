@@ -1,27 +1,34 @@
-{% extends 'base.html.twig' %}
-
-{% block title %} results for {{ query }} !{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
+{% extends 'base.html.twig' %} {% block title %} results for {{ query }} !{%
+endblock %} {% block body %}
+<main id="searchResults">
     <h1>Results for "{{ query }}" with {{fruit_emoji}}:</h1>
-    {% for result in results %}
-        {% set array = result['title']|split('-') %}
-        {% set artist = array[0] %}
-        {% set song = array[1] %}
-        <div>
-            <p>artist : {{artist}}</p>
-            <p>song : {{song}}</p>
-            <img loading="lazy" src={{result['cover_image']}} alt="{{song ~ ' by ' ~ artist}}" />
-        </div>
-    {% endfor %}
-    <a href="/search?q={{query}}&page={{previous_page}}&fruit={{fruit_emoji}}">previous page</a>
-    <p>{{page}}</p>
-    <a href="/search?q={{query}}&page={{next_page}}&fruit={{fruit_emoji}}">next page</a>
-</div>
+    <div class="results">
+        {% for result in results %} {% set array = result['title']|split('-') %}
+        {% set artist = array[0] %} {% set album = array[1] %}
+        <section class="album">
+            <span>
+                <h2>{{album}}</h2>
+                by
+                <h3>{{artist}}</h3>
+            </span>
+            <img
+                loading="lazy"
+                src="{{result['cover_image']}}"
+                alt="{{album ~ ' by ' ~ artist}}"
+            />
+            <br />
+        </section>
+        {% endfor %}
+    </div>
+    <nav>
+        <a
+            href="/search?q={{query}}&page={{previous_page}}&fruit={{fruit_emoji}}"
+            >previous page</a
+        >
+        <p>{{page}}</p>
+        <a href="/search?q={{query}}&page={{next_page}}&fruit={{fruit_emoji}}"
+            >next page</a
+        >
+    </nav>
+</main>
 {% endblock %}

@@ -134,3 +134,41 @@ main:is(#login, #register) > form {
         }
     }
 }
+
+main#searchResults {
+    & > h1 {
+        padding: 2rem;
+        text-align: center;
+    }
+    & div.results {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: stretch;
+        gap: 2rem;
+    }
+}
+
+section.album {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7rem;
+    width: auto;
+    transition: all ease-out 0.2s;
+    box-shadow: var(--shadow);
+    & > span {
+        width: fit-content;
+        & > * {
+            display: inline;
+        }
+    }
+    & > img {
+        min-width: 180px;
+        width: 100%;
+        max-width: 260px;
+    }
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-hover);
+    }
+}
