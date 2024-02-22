@@ -12,14 +12,16 @@
     <h1>results for {{ query }}! ✅</h1>
     {% for result in results %}
         {% set array = result['title']|split('-') %}
+        {% set artist = array[0] %}
+        {% set song = array[1] %}
         <div>
             <div>
-                artist : {{array[0]}}
+                artist : {{artist}}
             </div>
             <div>
-                song : {{array[1]}}
+                song : {{song}}
             </div>
-            <img src={{result['cover_image']}}></img>
+            <img loading="lazy" src={{result['cover_image']}} alt="{{song ~ ' by ' ~ artist}}" />
         </div>
     {% endfor %}
     <a href="/search?q={{query}}&page={{previous_page}}">previous page</a>
