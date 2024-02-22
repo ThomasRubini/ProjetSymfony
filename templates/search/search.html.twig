@@ -19,8 +19,11 @@
             <div>
                 song : {{array[1]}}
             </div>
-            <img src={{result['cover_image']}}/>
+            <img src={{result['cover_image']}}></img>
         </div>
     {% endfor %}
+    <a href="/search?q={{query}}&page={{previous_page}}">previous page</a>
+    <p>{{page}}</p>
+    <a href="/search?q={{query}}&page={{next_page}}">next page</a>
 </div>
 {% endblock %}

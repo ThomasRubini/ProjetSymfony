@@ -46,18 +46,21 @@ class SearchController extends AbstractController
     #[Route('/search', name: 'search')]
     public function index(Request $request): Response
     {
+        $page = $request->query->get('page');
         $result = SearchController::makeRequest("GET","search",[
             "q" => $request->query->get('q'),
             "type" => "release",
-            "page" => strval($request->query->get('page'))
+            "page" => strval($page),
+            "per_page" => "15",
         ]);
-        $result = $result["results"];
 
         return $this->render('search/search.html.twig', [
             'controller_name' => 'SearchController',
             'query' => $request->query->get('q'),
             'page' => $request->query->get('page'), 
-            'results' => $result
+            "next_page" => $page < $result["pagination"]["pages"] ? strval($page + 1) : strval($page),
+            "previous_page" => $page >1 ? strval($page - 1) : strval($page),
+            'results' => $result["results"]
         ]);
     }
 }
