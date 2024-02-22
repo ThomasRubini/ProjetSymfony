@@ -6,12 +6,13 @@ body %}
         <div class="alert alert-danger">
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
-        {% endif %} {% if app.user %}
+        {% endif %} 
+        {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }},
             <a href="{{ path('app_logout') }}">Logout</a>
         </div>
-        {% endif %}
+        {% else %}
 
         <h2>Login</h2>
         <label for="username">Username</label>
@@ -59,6 +60,7 @@ body %}
             If you don't have an account:
             <a href="{{url('app_register')}}">register</a>.
         </p>
+        {% endif %}
     </form>
 </main>
 {% endblock %}
