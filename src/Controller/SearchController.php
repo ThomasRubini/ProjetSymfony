@@ -18,7 +18,7 @@ class SearchController extends AbstractController
         $baseUri = 'https://api.discogs.com/';
         $client = new Client([
             'base_uri' => $baseUri,
-            'timeout'  => 2.0, // You can set request timeout (in seconds)
+            'timeout'  => 10, // You can set request timeout (in seconds)
         ]);
 
         // Set the base URI for the request and any default request options
