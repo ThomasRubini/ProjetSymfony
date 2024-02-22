@@ -1,42 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{{app.title}}{% endblock %}</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('styles/fonts.css') }}"/>
-    {% endblock %}
-    
-    {% block javascripts %}
-    {% block importmap %}{{ importmap('app') }}{% endblock %}
-    {% endblock %}
-</head>
-<body>
-    {% block header %}
-    <header>
-        <a href="{{url('index')}}">Frutti</a>
-        <form action="{{url('search')}}" method="get">
-            <input type="text" name="q" id="q" placeholder="Search">
-            <label>
-                <input type="submit" value="search">
-                <img src="{{ asset('/styles/search.svg') }}" alt="Search">
-            </label>
-        </form>
-        <a href="{{url('app_login')}}" class="button-link">Connect</a>
-    </header>
-    {% endblock %}
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{{app.title}}{% endblock %}</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"
+        />
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
+        <link rel="stylesheet" href="{{ asset('styles/fonts.css') }}" />
+        {% endblock %} {% block javascripts %} {% block importmap %}{{
+        importmap('app') }}{% endblock %} {% endblock %}
+    </head>
+    <body>
+        {% block header %}
+        <header>
+            <a href="{{url('index')}}">Frutti</a>
+            <form action="{{url('app_search')}}" method="get">
+                <input type="text" name="q" id="q" placeholder="Search" />
+                <label>
+                    <input type="submit" value="search" />
+                    <img src="{{ asset('/styles/search.svg') }}" alt="Search" />
+                </label>
+            </form>
+            <a href="{{url('app_login')}}" class="button-link">Connect</a>
+        </header>
+        {% endblock %}
 
-    <main>
-    {% block body %}{% endblock %}
-    </main>
-    
-    
-    {% block footer %}
-    <footer>
-        <p>Done by: Capelier 🏳️‍⚧️ — Rubini 💅 — Simaila 🤓</p>
-    </footer>
-    {% endblock %}
-</body>
+        <main>{% block body %}{% endblock %}</main>
+
+        {% block footer %}
+        <footer>
+            <p>Done by: Capelier 🏳️‍⚧️ — Rubini 💅 — Simaila 🤓</p>
+        </footer>
+        {% endblock %}
+    </body>
 </html>
