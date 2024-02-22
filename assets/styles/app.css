@@ -141,6 +141,7 @@ main#searchResults {
         text-align: center;
     }
     & div.results {
+        width: 90%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         justify-items: stretch;
@@ -152,10 +153,24 @@ section.album {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
     padding: 0.7rem;
     width: auto;
-    transition: all ease-out 0.2s;
+    /* max-width: max-content; */
+    transition: all ease-out 0.15s;
     box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    &.fav {
+        transform: rotate(-1deg);
+    }
+    &:hover {
+        transform: scale(1.01);
+        box-shadow: var(--shadow-hover);
+        &.fav {
+            transform: rotate(-1deg) scale(1.01);
+        }
+    }
     & > span {
         width: fit-content;
         & > * {
@@ -167,8 +182,16 @@ section.album {
         width: 100%;
         max-width: 260px;
     }
-    &:hover {
-        transform: scale(1.02);
-        box-shadow: var(--shadow-hover);
+    & > button {
+        background: var(--light);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 8px 12px;
+        transition: all ease-out 0.15s;
+        border: none;
+        outline: none;
+        &:hover {
+            box-shadow: var(--shadow-hover);
+        }
     }
 }

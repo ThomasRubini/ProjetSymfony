@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %} {% block title %} results for {{ query }} !{%
 endblock %} {% block body %}
+<script>
+    function addToFavs(id) {
+        // alert(id);
+        // /favorite/add/{id}
+        fetch("/favorite/add/" + id).then((data) => {
+            if (data.status == 200) {
+                document.querySelector("#id" + id).classList.add("fav");
+                alert("Added to favs");
+            }
+        });
+    }
+</script>
 <main id="searchResults">
     <h1>Results for "{{ query }}" with {{fruit_emoji}}:</h1>
     <div class="results">
         {% for result in results %} {% set array = result['title']|split('-') %}
         {% set artist = array[0] %} {% set album = array[1] %}
-        <section class="album">
+        <section class="album" id="id{{result['id']}}">
             <span>
                 <h2>{{album}}</h2>
                 by
@@ -16,7 +28,9 @@ endblock %} {% block body %}
                 src="{{result['cover_image']}}"
                 alt="{{album ~ ' by ' ~ artist}}"
             />
-            <br />
+            <button onclick="addToFavs({{result['id']}})">
+                Add to favorites
+            </button>
         </section>
         {% endfor %}
     </div>
