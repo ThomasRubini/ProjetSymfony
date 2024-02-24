@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %} {% block title %}Welcome to Frutti!{% endblock %}
 {% block body %}
 <main>
-    <h1>Welcome to Frutti!</h1>
+    {% if app.user %}
+    <div>
+        <h1>Welcome to Frutti {{ app.user.userIdentifier }} !</h1>
+    </div>
+    {% else %}
+    <div>
+        <h1>Welcome to Frutti!</h1>
+    </div>
+    {% endif%}
     <p>Frutti is an application to create your own fruit record collection.</p>
     <br />
     <h2>But what is a fruit record collection? 🤔</h2>
@@ -17,6 +25,15 @@
     </p>
     <br />
     <h2>Start your fruit collection today!</h2>
+    {% if app.user %}
+    <a href="/login" title="Click here to browse your favorites"
+            >Check out your favorites</a
+    >
+    or
+    <a href="/search?fruit=🍊&q=Whenever+You+Need+Somebody" title="Click here to browse our selection"
+            >search for new disks</a
+    >.
+    {% else %}
     <p>
         <a href="/register" title="Click to here to create an account"
             >Create an account</a
@@ -26,5 +43,6 @@
             >connect to an existing one</a
         >.
     </p>
+    {% endif%}
 </main>
 {% endblock %}
