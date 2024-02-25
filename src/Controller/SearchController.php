@@ -2,25 +2,29 @@
 
 namespace App\Controller;
 
-use App\Entity\Album;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Utils;
+use App\Entity\Album;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
 {
 
     private static function addFruitToAlbums(array $releases, string $fruit, EntityManagerInterface $entityManager): void
     {
+        $albums = $entityManager->getRepository(Album::class)->findAll();
         foreach ($releases as $release) {
+            $album = null;
             $id = $release["id"];
-            $album = $entityManager->getRepository(Album::class)->findBy(
-                ['album_id' => $id]
-            );
-            if (count($album) == 0) {
+            foreach($albums as $remote_album){
+                if ($remote_album->getAlbumId() == $id)
+                    $album == $remote_album;
+                break;
+            }
+            if ($album == null) {
                 $album = new Album();
                 $album->setAlbumId($id);
                 //https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database
@@ -33,8 +37,8 @@ class SearchController extends AbstractController
                 //https://symfony.com/doc/current/doctrine.html#persisting-objects-to-the-database
             }
             $entityManager->persist($album);
-            $entityManager->flush();
         }
+        $entityManager->flush();
     }
 
     private static function getEmojiName(string | null $emoji): string | null
